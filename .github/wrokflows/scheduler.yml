@@ -1,0 +1,31 @@
+name: Scheduled Daily Post
+
+on:
+  schedule:
+    - cron: '30 2 * * *'   # 8 AM IST
+  workflow_dispatch:
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Move draft to main folder
+        run: |
+          FILE=$(ls drafts/*.md | head -n 1)
+          BASENAME=$(basename "$FILE")
+          mv "$FILE" "$BASENAME"
+
+      - name: Commit scheduled post
+        run: |
+          FILE=$(ls -t *.md | head -n 1)
+          CLEAN=$(echo "$FILE" | sed 's/.md//' | sed 's/-/ /g')
+          MESSAGE="$CLEAN notes"
+
+          git config user.name "CyberDragon Scheduler"
+          git config user.email "bot@cyberdragon.in"
+          git add .
+          git commit -m "$MESSAGE"
+          git push
