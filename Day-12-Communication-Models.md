@@ -21,3 +21,4 @@ Secure communication depends on clear and reliable transmission models.
 
 ## My Key Takeaway
 Communication models are the foundation of secure data exchange.
+  
