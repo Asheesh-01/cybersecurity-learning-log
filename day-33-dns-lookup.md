@@ -56,4 +56,4 @@ dig google.com MX
 ## Why It Matters
 
 DNS lookup is a daily tool for security analysts and network engineers.
-Understanding it helps in detecting malicious infrastructure and domain abuse.
+Understanding it helps in detecting malicious infrastructure and domain abuse. END
